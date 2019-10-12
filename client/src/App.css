@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+.list-row {
+  display: flex;
+  height: 100%;
+}
+
+.list-header {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 10;
+  border-top: 1px solid rgb(99, 100, 99);
+  border-bottom: 1px solid rgb(99, 100, 99);
+  height: 150px;
+}
+
+.column-heading {
+  /* transform: rotate(300deg);
+  transform-origin: 75%; */
+  width: 10%
+}
+
+.cell {
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  height: 35px;
+  width: 75px;
+  align-items: center;
+  padding: 1rem;
+}
+
+.column-spacer {
+  width: 150px;
+  padding: 1rem;
+  border-right: 1px solid gray;
+}
+
+.student-info {
+  width: 150px;
+  display: flex;
+}
+
+.name {
+  width: 50%;
+}
+
+.name-block {
+  display: block;
+}
+
+.average-grade {
+  width: 50;
+}
