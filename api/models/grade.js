@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Grade = new Schema(
+const GradeSchema = new Schema(
   {
     studentId: { type: Number, required: true },
     chapter1Test: { type: String },
@@ -18,4 +18,4 @@ const Grade = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('grades', Grade)
+module.exports = Grade = mongoose.model('Grades', GradeSchema)

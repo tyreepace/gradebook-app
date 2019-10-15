@@ -51,7 +51,6 @@ class Table extends React.Component {
   }
 
   renderScoreData() {
-    this.formatGradesData();
     return this.state.grades.map((test, i) => {
       return (
         <div className="list-row" key={test.studentId}>
