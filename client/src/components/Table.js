@@ -18,7 +18,6 @@ class Table extends React.Component {
     let apiRequest2 = fetch(url2).then(response => response.json());
 
     Promise.all([apiRequest1, apiRequest2]).then(resp => {
-      console.log(resp[0].data);
       this.setState({
         students: resp[0].data,
         grades: resp[1].data
@@ -26,64 +25,98 @@ class Table extends React.Component {
     });
   }
 
-  formatGradesData() {
-    let obj = this.state.grades[0];
-    let names = Object.keys(obj);
-    console.log(names);
+  calculateAvgGrade(scores) {
+    let total = 0;
+    let index = 0;
+    Object.keys(scores).forEach(key => {
+      if ((key !== 'student_id') && (key !== '_id')) {
+        total = total + Number(scores[key]);
+        index++;
+      }
+    });
+    return Math.round(total / index);
   }
 
   renderTableData() {
     return this.state.students.map((student, i) => {
-      const { id, firstname, lastname } = student;
-
       return (
-        <div className="list-row" key={id}>
-          <div className="cell student-info">
+        <tr className="list-row" key={student._id}>
+          <td className="student-info">
             <div className="name">
-              <span className="name-block">{firstname}</span>
-              <span>{lastname}</span>
+              <span className="name-block">{student.firstname}</span>
+              <span>{student.lastname}</span>
             </div>
-            <div className="average-grade">85%</div>
-          </div>
-        </div>
+            <div className="average-grade">{this.calculateAvgGrade(student.scores[0])}%</div>
+          </td>
+          <td className="cell scores">{student.scores[0].chapter1Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter2Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter3Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter4Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter5Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter6Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter7Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter8Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter9Test}%</td>
+          <td className="cell scores">{student.scores[0].chapter10Test}%</td>
+        </tr>
       );
     });
   }
 
-  renderScoreData() {
-    return this.state.grades.map((test, i) => {
-      return (
-        <div className="list-row" key={test.studentId}>
-          <div className="cell">{test.chapter1Test}</div>
-          <div className="cell">{test.chapter2Test}</div>
-          <div className="cell">{test.chapter3Test}</div>
-          <div className="cell">{test.chapter4Test}</div>
-          <div className="cell">{test.chapter5Test}</div>
-          <div className="cell">{test.chapter6Test}</div>
-          <div className="cell">{test.chapter7Test}</div>
-          <div className="cell">{test.chapter8Test}</div>
-          <div className="cell">{test.chapter9Test}</div>
-          <div className="cell">{test.chapter10Test}</div>
-        </div>
-      )
-    })
-  }
-
-
-
   render () {
     return (
-      <div>
+      <div className="resource-list">
         <h1>Gradebook Sample App</h1>
-        <div className="resource-list">
-          <div className="list-row list-header">
-            <div className="column-spacer"></div>
-          </div>
-          {this.renderTableData()}
-
-          {this.renderScoreData()}
-
-        </div>
+        <table>
+          <thead className="list-row list-header">
+            <tr>
+              <th className="column-spacer"></th>
+              <th className="column-heading">
+                <div>Chapter 1 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 2 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 3 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 4 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 5 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 6 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 7 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 8 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 9 Test</div>
+                <div>March 25</div>
+              </th>
+              <th className="column-heading">
+                <div>Chapter 10 Test</div>
+                <div>March 25</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderTableData()}
+          </tbody>
+        </table>
       </div>
     )
   }

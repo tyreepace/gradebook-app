@@ -1,7 +1,16 @@
 const Student = require ('../models/student')
 
 getStudents = async (req, res) => {
-  await Student.find({}, (err, students) => {
+  await Student.aggregate([
+    {
+      $lookup: {
+        from: 'grades',
+        localField: '_id',
+        foreignField: 'student_id',
+        as: 'scores'
+      }
+    }
+  ], (err, students) => {
     if (err) {
       return res.status(400).json({ success: false, error: err })
     }

@@ -1,45 +1,66 @@
-.App {
+table {
+  min-width: 100%;
+  background-color: #eeeeee;
+  border-spacing: 0 10px !important;
+}
+
+th {
+  position: sticky;
+  top: 50%;
+  text-align: left;
+  vertical-align: middle;
+}
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+.resource-list {
   text-align: center;
 }
 
 .list-row {
   display: flex;
   height: 100%;
+  border-bottom: 1px solid #dddddd;
 }
 
 .list-header {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 10;
-  border-top: 1px solid rgb(99, 100, 99);
-  border-bottom: 1px solid rgb(99, 100, 99);
-  height: 150px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 
 .column-heading {
-  /* transform: rotate(300deg);
-  transform-origin: 75%; */
-  width: 10%
+  width: 75px;
+  padding: 1rem;
+  font-size: 12px;
 }
 
 .cell {
-  border-bottom: 1px solid gray;
-  border-right: 1px solid gray;
   height: 35px;
   width: 75px;
   align-items: center;
   padding: 1rem;
 }
 
+.scores {
+  background-color: white;
+}
+
 .column-spacer {
   width: 150px;
   padding: 1rem;
-  border-right: 1px solid gray;
+  border-right: 1px solid #dddddd;
 }
 
 .student-info {
   width: 150px;
   display: flex;
+  padding: 1rem;
+  align-items: center;
+  border-right: 1px solid #dddddd;
 }
 
 .name {
@@ -51,5 +72,6 @@
 }
 
 .average-grade {
-  width: 50;
+  width: 50%;
+  text-align: right;
 }
